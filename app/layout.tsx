@@ -10,23 +10,23 @@ const roboto = Roboto({ subsets: ['latin'], variable: '--font-roboto' })
 export const metadata: Metadata = {
   title: 'Shah Zaman Groups | Growing with purpose',
   description: 'Explore the ventures of Shah Zaman Groups — agriculture, livestock, construction, and development.',
-  generator: 'v0.app',
+  generator: 'Devntom Solutions',
   icons: {
     icon: [
       {
-        url: '/icon-light-32x32.png',
+        url: '/logo.png',
         media: '(prefers-color-scheme: light)',
       },
       {
-        url: '/icon-dark-32x32.png',
+        url: '/logo.png',
         media: '(prefers-color-scheme: dark)',
       },
       {
-        url: '/icon.svg',
+        url: '/logo.png',
         type: 'image/svg+xml',
       },
     ],
-    apple: '/apple-icon.png',
+    apple: '/logo.png',
   },
 }
 
