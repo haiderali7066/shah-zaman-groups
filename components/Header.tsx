@@ -89,7 +89,7 @@ export default function Header() {
           ))}
           <Link
             href="/contact"
-            className="group ml-3 inline-flex items-center gap-1.5 rounded-full bg-[#f59a23] px-5 py-2.5 text-sm font-bold text-[#06271f] transition hover:bg-[#0b4f3c] hover:text-white"
+            className="group ml-3 inline-flex items-center gap-1.5 rounded-full bg-[#f59a23] px-5 py-2.5 text-sm font-bold text-[#06271f] transition "
           >
             Get in touch{" "}
             <ArrowUpRight
