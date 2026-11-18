@@ -14,8 +14,8 @@ const poppins = Poppins({ subsets: ['latin'], weight: ['400', '500', '600', '700
    Up to 5 DIRECT .mp4 / .webm links. Each clip shows for HERO_SLIDE_MS then crossfades. */
 const HERO_VIDEOS = [
   'https://www.pexels.com/download/video/30899354/',
-  'https://www.pexels.com/download/video/13689704/',
-  'https://www.pexels.com/download/video/10810477/',
+  'https://www.pexels.com/download/video/854064/',  
+  'https://www.pexels.com/download/video/27086044/',
   
 ].filter(Boolean)
 const HERO_SLIDE_MS = 3000
