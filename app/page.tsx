@@ -251,72 +251,103 @@ export default function Page() {
       `}</style>
 
       {/* HERO */}
-      <section id="home" aria-labelledby="hero-title"
-        className="relative overflow-hidden bg-[#06271f] bg-cover bg-center pb-60 pt-28 text-white md:pb-72 md:pt-40"
-        style={HERO_POSTER ? { backgroundImage: `url(${HERO_POSTER})` } : undefined}>
-        {HERO_VIDEOS.map((src, i) => !failedClips[i] && (
-          <video key={src + i} ref={(el) => { videoRefs.current[i] = el }}
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 motion-reduce:transition-none ${i === clip ? 'opacity-100' : 'opacity-0'}`}
-            src={src} poster={HERO_POSTER || undefined} autoPlay={i === 0} muted loop playsInline preload={i === 0 ? 'auto' : 'metadata'}
-            aria-hidden onError={() => setFailedClips((f) => ({ ...f, [i]: true }))} />
-        ))}
-        {/* readable text on any clip: dark on the left, lighter on the right */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#041c15]/85 via-[#041c15]/50 to-black/20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+      <section
+  id="home"
+  aria-labelledby="hero-title"
+  className="relative flex min-h-[650px] items-center overflow-hidden bg-[#06271f] bg-cover bg-center pb-32 pt-28 text-white md:min-h-[750px] md:pt-32"
+  style={HERO_POSTER ? { backgroundImage: `url(${HERO_POSTER})` } : undefined}
+>
+  {HERO_VIDEOS.map((src, i) => !failedClips[i] && (
+    <video
+      key={src + i}
+      ref={(el) => { videoRefs.current[i] = el }}
+      className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 motion-reduce:transition-none ${
+        i === clip ? "opacity-100" : "opacity-0"
+      }`}
+      src={src}
+      poster={HERO_POSTER || undefined}
+      autoPlay={i === 0}
+      muted
+      loop
+      playsInline
+      preload={i === 0 ? "auto" : "metadata"}
+      aria-hidden
+      onError={() => setFailedClips((f) => ({ ...f, [i]: true }))}
+    />
+  ))}
 
-        <div className={`${W} relative grid items-center gap-12 lg:grid-cols-[1.5fr_1fr]`}>
-          <div>
-            <p className="inline-flex items-center rounded-full bg-white/15 px-4 py-1.5 text-sm font-semibold text-white backdrop-blur md:text-base">
-              Trading · Livestock · Construction
-            </p>
-            <h1 id="hero-title" className="mt-6 max-w-3xl text-5xl font-bold leading-[1.05] tracking-tight drop-shadow-[0_2px_16px_rgba(0,0,0,0.5)] sm:text-6xl lg:text-7xl xl:text-[5.25rem]">
-              Building the future with purpose.
-            </h1>
-            <p className="mt-7 max-w-xl text-lg leading-relaxed text-white md:text-xl">
-              Shah Zaman Groups brings three trusted businesses together under one shared vision for Pakistan.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <PillButton href="#businesses" tone="orangeDark">Explore our businesses <ArrowRight size={18} className="transition group-hover:translate-x-1" /></PillButton>
-              <a href="#contact" className={`${BTN_BASE} ${BTN.outline} px-7 py-3.5 text-base`}>
-                Contact us
-              </a>
-            </div>
-          </div>
+  {/* Background overlays */}
+  <div className="absolute inset-0 bg-gradient-to-r from-[#041c15]/85 via-[#041c15]/50 to-black/20" />
+  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
 
-          <div className="hidden justify-end lg:flex">
-            <div className="flex h-72 w-72 items-center justify-center xl:h-96 xl:w-96">
-              {LOGO_SRC ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={LOGO_SRC} alt="Shah Zaman Groups logo" className="max-h-full max-w-full object-contain drop-shadow-2xl" />
-              ) : (
-                <div className="flex h-full w-full flex-col items-center justify-center gap-3 rounded-3xl border-2 border-dashed border-white/50 text-center text-white">
-                  <ImageIcon size={40} />
-                  <span className="text-base font-semibold">Your logo here</span>
-                  <span className="text-sm text-white/80">Set LOGO_SRC at the top of the file</span>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
+  <div className={`${W} relative z-10 grid items-center gap-10 lg:grid-cols-[1.5fr_1fr]`}>
 
-        {multi && (
-          <div className={`${W} absolute inset-x-0 bottom-44 z-10 flex gap-2 md:bottom-52`} role="group" aria-label="Hero video">
-            {HERO_VIDEOS.map((_, i) => (
-              <button key={i} onClick={() => setClip(i)} aria-label={`Show video ${i + 1}`} aria-current={i === clip}
-                className="relative h-2 w-12 overflow-hidden rounded-full bg-white/35 outline-none transition hover:bg-white/60 focus-visible:ring-2 focus-visible:ring-white md:w-16">
-                {i < clip && <span className="absolute inset-0 bg-white" />}
-                {i === clip && (
-                  <span key={clip} className="absolute inset-0 origin-left bg-[#f59a23] motion-reduce:scale-x-100"
-                    style={{ animation: `fillbar ${HERO_SLIDE_MS}ms linear forwards` }} />
-                )}
-              </button>
-            ))}
+    {/* Left Content */}
+    <div>
+      <h1
+        id="hero-title"
+        className="max-w-3xl text-5xl font-bold leading-[1.05] tracking-tight drop-shadow-2xl sm:text-6xl lg:text-7xl xl:text-[5.25rem]"
+      >
+        Shahzman Groups
+      </h1>
+
+      <div className="mt-9">
+        <PillButton href="#businesses" tone="orangeDark">
+          Explore our businesses
+          <ArrowRight size={18} className="transition group-hover:translate-x-1" />
+        </PillButton>
+      </div>
+    </div>
+
+    {/* Right Logo */}
+    <div className="hidden justify-end lg:flex">
+      <div className="flex h-72 w-72 items-center justify-center xl:h-96 xl:w-96">
+        {LOGO_SRC ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={LOGO_SRC}
+            alt="Shahzman Groups logo"
+            className="max-h-full max-w-full object-contain drop-shadow-2xl"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center rounded-3xl border-2 border-dashed border-white/50">
+            <ImageIcon size={40} />
           </div>
         )}
-      </section>
+      </div>
+    </div>
+  </div>
+
+  {/* Video Indicators */}
+  {multi && (
+    <div
+      className={`${W} absolute inset-x-0 bottom-12 z-10 flex gap-2`}
+      role="group"
+      aria-label="Hero video"
+    >
+      {HERO_VIDEOS.map((_, i) => (
+        <button
+          key={i}
+          onClick={() => setClip(i)}
+          aria-label={`Show video ${i + 1}`}
+          aria-current={i === clip}
+          className="relative h-2 w-12 overflow-hidden rounded-full bg-white/35 transition hover:bg-white/60 md:w-16"
+        >
+          {i === clip && (
+            <span
+              key={clip}
+              className="absolute inset-0 origin-left bg-[#f59a23]"
+              style={{ animation: `fillbar ${HERO_SLIDE_MS}ms linear forwards` }}
+            />
+          )}
+        </button>
+      ))}
+    </div>
+  )}
+</section>
 
       {/* HERO CARDS (overlap the hero) */}
-      <section className="relative z-20 -mt-32 md:-mt-40" aria-label="Quick links">
+      {/* <section className="relative z-20 -mt-32 md:-mt-40" aria-label="Quick links">
         <div className={`${W} grid gap-5 md:grid-cols-3`}>
           {heroCards.map((c, i) => (
             <Reveal key={c.title} delay={i * 80}>
@@ -328,13 +359,12 @@ export default function Page() {
                     {c.cta} <ArrowRight size={16} className="transition group-hover:translate-x-1" />
                   </a>
                 </div>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={c.img} alt="" loading="lazy" className="h-36 w-36 shrink-0 rounded-2xl object-cover md:h-40 md:w-40" />
               </div>
             </Reveal>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* TRUSTED BY */}
       <section className="overflow-hidden bg-white py-20" aria-label="Institutions we work with">
